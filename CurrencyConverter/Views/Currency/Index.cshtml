@@ -1,0 +1,91 @@
+﻿@model Application.Models.ConfigurationModel
+
+@if (ViewBag.IsClearSuccess != null && ViewBag.IsClearSuccess == true)
+{
+<script>
+    alert('Configuration cleared successfully!');
+</script>
+}
+
+@if (ViewBag.UpdateSuccess != null && ViewBag.UpdateSuccess == true)
+{
+<script>
+    alert('Configuration updated successfully!');
+</script>
+}
+
+@{
+    ViewData["Title"] = "Currency Convertor";
+}
+
+<h2>Set Configuration</h2>
+@using (Html.BeginForm("UpdateConfiguration", "Currency", FormMethod.Post))
+{
+    <div id="configurations">
+        @for (var i = 0; i < Model.Configurations?.Count || i == 0; i++)
+        {
+        <div>
+            @if (Model.Configurations != null && Model.Configurations.Count > i)
+            {
+            @Html.LabelFor(m => m.Configurations[i].FromCurrency)
+            @Html.TextBoxFor(m => m.Configurations[i].FromCurrency)
+
+            @Html.LabelFor(m => m.Configurations[i].ToCurrency)
+            @Html.TextBoxFor(m => m.Configurations[i].ToCurrency)
+
+            @Html.LabelFor(m => m.Configurations[i].RateValue)
+            @Html.TextBoxFor(m => m.Configurations[i].RateValue)
+            }
+            else
+            {
+            @Html.LabelFor(m => m.Configurations[0].FromCurrency)
+            @Html.TextBoxFor(m => m.Configurations[0].FromCurrency)
+
+            @Html.LabelFor(m => m.Configurations[0].ToCurrency)
+            @Html.TextBoxFor(m => m.Configurations[0].ToCurrency)
+
+            @Html.LabelFor(m => m.Configurations[0].RateValue)
+            @Html.TextBoxFor(m => m.Configurations[0].RateValue)
+            }
+
+            <br />
+        </div>
+        }
+    </div>
+
+    <button type="button" id="addRow" onclick="addNewRow()">+</button>
+    
+    <input type="submit" value="Save Configuration" />
+ @Html.ValidationSummary(true) 
+
+}
+
+<hr/>
+@using (Html.BeginForm("ClearConfiguration", "Currency", FormMethod.Post))
+{
+<input type="submit" value="Clear Configuration" />
+}
+<hr/>
+<div>
+
+    @Html.ActionLink("Convert Currency","Converter", "Currency")
+
+</div>
+
+<script>
+         function addNewRow () {
+            var newIndex = $("#configurations div").length; // Get the number of existing rows
+            
+            var newRow = '<div>' +
+                            '<label for="Configurations_' + newIndex + '__FromCurrency">From Currency</label>' +
+                            '<input type="text" name="Configurations[' + newIndex + '].FromCurrency" />' +
+                            '<label for="Configurations_' + newIndex + '__ToCurrency">To Currency</label>' +
+                            '<input type="text" name="Configurations[' + newIndex + '].ToCurrency" />' +
+                            '<label for="Configurations_' + newIndex + '__RateValue">Rate Value</label>' +
+                            '<input type="text" name="Configurations[' + newIndex + '].RateValue" />' +
+                            '<br />' +
+                         '</div>';
+            
+            $("#configurations").append(newRow);
+        }
+</script>

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "fT4EHkHRV7XzUIIhW248DzkusZ97N84mjcWLlHF/ujEidKh6NZHTCcVv3oV0MsU0kGucyS2FPCXbgiTQh32LwA==",
+  "success": true,
+  "projectFilePath": "D:\\projects\\Test\\CurrencyConvertor\\CurrencyConvertor\\Application\\Application.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://repo.didar.com:3000/api/packages/Didar/nuget/index.json'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}

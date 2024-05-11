@@ -1,0 +1,53 @@
+﻿@model ConvertInputDto
+
+@{
+ViewBag.Title = "Currency Converter";
+}
+
+<h2>Currency Converter</h2>
+
+@using (Html.BeginForm("ConvertCurrency", "Currency", FormMethod.Post))
+{
+<div>
+    <label for="fromCurrency">From Currency:</label>
+    @Html.TextBoxFor(m => m.FromCurrency)
+    @Html.ValidationMessageFor(m => m.FromCurrency)
+</div>
+
+<div>
+    <label for="toCurrency">To Currency:</label>
+    @Html.TextBoxFor(m => m.ToCurrency)
+    @Html.ValidationMessageFor(m => m.ToCurrency)
+</div>
+
+<div>
+    <label for="amount">Amount:</label>
+    @Html.TextBoxFor(m => m.Amount)
+    @Html.ValidationMessageFor(m => m.Amount)
+</div>
+
+<input type="submit" value="Convert" />
+
+<div>
+    @if (ViewBag.ConvertedAmount != null)
+    {
+        <p>Converted Amount: @ViewBag.ConvertedAmount</p>
+    }
+</div>
+
+@Html.ValidationSummary(true)
+
+}
+
+<button onclick="navigateToView('Index')">Back</button>
+
+<script>
+        // Function to navigate to a specific view
+        function navigateToView(viewName) {
+            // Define the URL or path for the specific view
+            let viewUrl = viewName; // Add the URL or path for the specific view here
+
+            // Redirect the user to the specific view
+            window.location.href = viewUrl;
+        }
+    </script>
